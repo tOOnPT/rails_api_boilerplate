@@ -1,0 +1,123 @@
+# Ruby standards
+
+# inherit_from: .rubocop_todo.yml
+require: rubocop-rspec
+
+AllCops:
+  DisplayCopNames: true
+  Include:
+    - Rakefile
+    - Gemfile
+    - config.ru
+  Exclude:
+    - db/**/*
+    - bin/**/*
+    - script/**/*
+    - config/**/*
+    - features/support/**/*
+    - vendor/**/*
+  TargetRubyVersion: 2.4
+
+Rails:
+  Enabled: true
+Rails/Output:
+  Enabled: true
+  Exclude:
+    - lib/**/*
+Rails/Delegate:
+  Enabled: true
+  Exclude:
+    - lib/**/*
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+Style/BracesAroundHashParameters:
+  Enabled: true
+  EnforcedStyle: context_dependent
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/BracesAroundHashParameters:
+  Enabled: false
+Style/NegatedIf:
+  Enabled: false
+Style/RedundantReturn:
+  Enabled: false
+Style/RedundantSelf:
+  Enabled: false
+Style/AutoResourceCleanup:
+  Enabled: true
+Style/CollectionMethods:
+  Enabled: true
+Style/MutableConstant:
+  Enabled: true
+Style/GuardClause:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: true
+  Exclude:
+    - config/deploy/**/*
+
+ModuleFunction:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+Layout/TrailingWhitespace:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+Metrics/ModuleLength:
+  Enabled: true
+  Exclude:
+    - lib/**/*
+Metrics/ClassLength:
+  Enabled: true
+Metrics/LineLength:
+  Enabled: true
+  Max: 100
+Metrics/MethodLength:
+  Enabled: true
+  Max: 20
+  Exclude:
+    - spec/**/*
+Metrics/AbcSize:
+  Enabled: true
+  Max: 25
+  Exclude:
+    - spec/**/*
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - config/routes.rb
+    - config/deploy.rb
+    - spec/**/*
+RSpec/MultipleExpectations:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+RSpec/ExampleLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+Lint/LiteralInInterpolation:
+  AutoCorrect: true
+
+Naming/FileName:
+  Enabled: true
+  Exclude:
+    - Capfile
