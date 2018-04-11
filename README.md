@@ -2,6 +2,7 @@
 
 **Important**
 
+Change the *Project Name*
 Search about `rails_api_boilerplate` and replace it where it"s needed.
 Don"t forget about the folder name too. ;)
 
@@ -56,7 +57,23 @@ $ open coverage/index.html
 Git hooks are defined on the `hooks` folder.
 
 #### API Documentation
-Don"t forget, write your documentation, [wiki](...).
+We will use [*rswag*](https://github.com/domaindrivendev/rswag) for this.
+
+**How it works?**
+In the `spec/integrations` folder you can see one example. In this case is about the healthcheck endpoint.
+Rswag makes use of integration tests that we write about our endpoints to generate the documentations.
+This was the why I liked and started to use it.
+
+So, follow the `/spec/integration/healthcheck_spec.rb` and start to write new ones about new endpoints that you create.
+Don't foget to check the Rswag documentation on github to know more about it.
+
+When ready, just do:
+```bash
+$ ./bin/swaggerize
+```
+
+This will update the swagger json so, just open the path `.../api-docs` and check the documentation.
+
 
 #### Services (job queues, cache servers, search engines, etc.)
 ...

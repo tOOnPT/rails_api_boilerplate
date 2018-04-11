@@ -105,6 +105,7 @@ Metrics/BlockLength:
     - config/routes.rb
     - config/deploy.rb
     - spec/**/*
+
 RSpec/MultipleExpectations:
   Enabled: true
   Exclude:
@@ -113,6 +114,14 @@ RSpec/ExampleLength:
   Enabled: true
   Exclude:
     - spec/**/*
+RSpec/EmptyExampleGroup:
+  Enabled: true
+  Exclude:
+    - spec/integration/**/*
+RSpec/DescribeClass:
+  Enabled: true
+  Exclude:
+    - spec/integration/**/*
 
 Lint/LiteralInInterpolation:
   AutoCorrect: true
@@ -121,3 +130,5 @@ Naming/FileName:
   Enabled: true
   Exclude:
     - Capfile
+    - config/initializers/rswag-api.rb
+    - config/initializers/rswag-ui.rb

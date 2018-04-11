@@ -16,6 +16,13 @@ gem "pg", "~> 0.18"
 # Use Puma as the app server
 gem "puma", "~> 3.7"
 
+# API Documentation - by swagger
+gem "rswag"
+
+# The rspec gem needs to be out of the test group because of rswag
+# The documentation is based on rspec tests
+gem "rspec-rails"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem "jbuilder", "~> 2.5"
 # Use Redis adapter to run Action Cable in production
@@ -55,7 +62,6 @@ group :test do
   gem "database_cleaner"
   gem "factory_bot_rails"
   gem "rack-test", require: "rack/test"
-  gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-rspec"
   gem "simplecov"
