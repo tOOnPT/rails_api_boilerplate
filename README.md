@@ -3,6 +3,7 @@
 **Important**
 
 Change the *Project Name*
+
 Search about `rails_api_boilerplate` and replace it where it"s needed.
 Don"t forget about the folder name too. ;)
 
