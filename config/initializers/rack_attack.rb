@@ -23,7 +23,9 @@ class Rack::Attack
   # Throttle all requests by IP
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle("req/ip", limit: 10, period: 10.seconds, &:remote_ip)
+  throttle("req/ip", limit: 10, period: 10.seconds) do |request|
+    request.ip if request.path != "/api-docs"
+  end
 
   ### Custom Throttle Response ###
 
@@ -34,14 +36,24 @@ class Rack::Attack
   # believing that they"ve successfully broken your app (or you just want to
   # customize the response), then uncomment these lines.
   self.throttled_response = lambda do |_env|
+    now = Time.now.utc
+    match_data = env["rack.attack.match_data"]
+
+    headers = {
+      "Content-Type": "application/json",
+      "X-RateLimit-Limit": match_data[:limit].to_s,
+      "X-RateLimit-Remaining": "0",
+      "X-RateLimit-Reset": (now + (match_data[:period] - now.to_i % match_data[:period])).to_s
+    }
+
     [
       429,
-      { "Content-Type" => "application/json" },
+      headers,
       [{ error: "Take it easy, we only allow 60rpm." }.to_json]
     ]
   end
 
-  # what"s the ip when the app is behing a load balancer
+  # what's the ip when the app is behing a load balancer
   class Request < ::Rack::Request
     def remote_ip
       @remote_ip ||= (env["action_dispatch.remote_ip"] || ip).to_s
