@@ -21,9 +21,6 @@ module RailsAPIBoilerplate
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Tell your app to use the Rack::Attack middleware.
-    config.middleware.use Rack::Attack
-
     # Read your .env VARS here and get them with ENV.fetch ;)
     # config.some_var = ENV.fetch("<env key>", "<default value>")
 
