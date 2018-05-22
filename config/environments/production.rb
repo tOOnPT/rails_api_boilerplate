@@ -80,4 +80,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # Tell your app to use the Rack::Attack middleware.
+  config.middleware.use Rack::Attack
 end
