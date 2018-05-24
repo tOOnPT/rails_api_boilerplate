@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your routes here ;)
 
 
-  # API Documentation
+  # API Docs
   mount Rswag::Ui::Engine => "/api-docs"
   mount Rswag::Api::Engine => "/api-docs"
 

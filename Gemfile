@@ -65,6 +65,7 @@ group :test do
   gem "rubocop", require: false
   gem "rubocop-rspec"
   gem "simplecov"
+  gem "vcr"
   gem "webmock"
 end
 
