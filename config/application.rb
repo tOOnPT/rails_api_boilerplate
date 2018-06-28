@@ -23,13 +23,5 @@ module RailsAPIBoilerplate
 
     # Read your .env VARS here and get them with ENV.fetch ;)
     # config.some_var = ENV.fetch("<env key>", "<default value>")
-
-    # Allow GET, POST or PUT requests from any origin on any resource.
-    config.middleware.insert_before 0, Rack::Cors, { debug: true, logger: Rails.logger } do
-      allow do
-        origins "*"
-        resource "/*", headers: :any, methods: %i[get post put]
-      end
-    end
   end
 end

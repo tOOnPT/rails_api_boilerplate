@@ -23,7 +23,7 @@ class Rack::Attack
   # Throttle all requests by IP
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle("req/ip", limit: 10, period: 10.seconds) do |request|
+  throttle("req/ip", limit: 20, period: 10.seconds) do |request|
     request.ip if request.path != "/api-docs"
   end
 
@@ -35,7 +35,7 @@ class Rack::Attack
   # If you want to return 503 so that the attacker might be fooled into
   # believing that they"ve successfully broken your app (or you just want to
   # customize the response), then uncomment these lines.
-  self.throttled_response = lambda do |_env|
+  self.throttled_response = lambda do |env|
     now = Time.now.utc
     match_data = env["rack.attack.match_data"]
 
@@ -54,6 +54,7 @@ class Rack::Attack
   end
 
   # what's the ip when the app is behing a load balancer
+
   class Request < ::Rack::Request
     def remote_ip
       @remote_ip ||= (env["action_dispatch.remote_ip"] || ip).to_s

@@ -1,10 +1,13 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.1"
 
-set :stages, %w[staging production]
+set :repo_url, "git@.../rails_api_boilerplate.git"
+set :repo_tree, "rails_api_boilerplate"
+
+set :log_level, :info
+set :stages, %w[development staging production]
 set :application, "rails_api_boilerplate"
 
-set :repo_url, "git@.../rails_api_boilerplate.git"
 set :deploy_to, "/var/www/rails_api_boilerplate"
 
 # Default branch is :master
@@ -35,6 +38,10 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
+set :linked_dirs,  %w{ log vendor/bundle tmp public/uploads uploads }
+set :linked_files, %w{ .env }
+set :bundle_gemfile, -> { release_path.join('Gemfile') }
+set :bundle_path, -> {}
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure

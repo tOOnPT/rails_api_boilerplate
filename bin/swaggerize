@@ -1,5 +1,25 @@
 #!/usr/bin/env ruby
+require "json"
+require "json_schema"
 
-puts "\n== Setup swagger API docs =="
+puts "\n== Build swagger API docs =="
 `rake rswag:specs:swaggerize`
 
+puts "\n== Swagger API Docs Validation =="
+schema_data = JSON.parse(File.read("./swagger/v1/swagger.json"))
+
+# parse the schema - raise SchemaError if it's invalid. Possible errors:
+# schema_not_found: $schema specified was not found
+# unknown_type: type specified in the schema is not known
+# unresolved_references: reference could not be resolved
+# loop_detected: reference loop detected
+# unresolved_pointer: pointer in document couldn't be resolved
+# scheme_not_supported: lookup of reference over scheme specified isn't supported
+# invalid_type: the schema being parsed is not a valid JSON schema, because a value is the wrong type
+# unknown_format: the format specified is not supported by this gem
+
+schema = JsonSchema.parse!(schema_data)
+# expand $ref nodes - raise SchemaError if unable to resolve
+schema.expand_references!
+
+puts "\n== All good =="

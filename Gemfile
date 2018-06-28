@@ -32,10 +32,11 @@ gem "rspec-rails"
 
 # Use Capistrano for deployment
 group :deployment do
-  gem "capistrano", require: false
-  gem "capistrano-bundler", require: false
-  gem "capistrano-rails", require: false
-  gem "capistrano3-puma", require: false
+  gem "capistrano",            "~> 3.10.2", require: false
+  gem "capistrano-bundler",    "~> 1.2", require: false
+  gem "capistrano-rails",      "~> 1.3", require: false
+  gem "capistrano-rvm",        "~> 0.1.2", require: false
+  gem "capistrano3-puma",      "~> 3.1.1", require: false
 end
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS),
@@ -61,6 +62,7 @@ group :test do
   gem "codeclimate-test-reporter", require: false
   gem "database_cleaner"
   gem "factory_bot_rails"
+  gem "json_schema"
   gem "rack-test", require: "rack/test"
   gem "rubocop", require: false
   gem "rubocop-rspec"
