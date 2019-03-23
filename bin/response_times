@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+module ResponseTimes
+  module_function
+
+  puts "\n== Build results html =="
+  require "./lib/responses_time_analyzer.rb"
+  ResponsesTimeAnalyzer.new.html_generation
+
+  puts "\n== Open results =="
+  `open coverage/responses_time_analyzer.html`
+end

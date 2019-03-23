@@ -8,6 +8,8 @@ module RootTesting
       RootTesting.run_rubocop
       RootTesting.run_rspec
     end
+
+    ResponsesTimeAnalyzer.new(tests_log: true).html_generation
   end
 
   def run_rubocop
