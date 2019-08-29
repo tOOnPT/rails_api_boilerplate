@@ -1,5 +1,4 @@
 # rubocop:disable Metrics/MethodLength
-# rubocop:disable Metrics/AbcSize
 
 ###
 # Usage example (rails console):
@@ -22,12 +21,14 @@ class ResponsesTimeAnalyzer
   def top_best_response_times
     result = response_times
     return result unless result.is_a? Array
+
     result.last(top)
   end
 
   def top_worst_response_times
     result = response_times
     return result unless result.is_a? Array
+
     result.take(top)
   end
 
@@ -51,8 +52,8 @@ class ResponsesTimeAnalyzer
       map { |k, lines| [k, lines.sort_by { |line| 1 / line[2].split[1].to_f }[0..(@top - 1)]] }.
       # sort controller actions from worst response time to best
       sort_by { |_, lines| 1 / lines[0][2].split[1].to_f }
-  rescue Errno::ENOENT => exception
-    exception.message
+  rescue Errno::ENOENT => e
+    e.message
   end
 
   def log_file
@@ -98,7 +99,7 @@ class HtmlWriter
       "<tbody>"
     ]
 
-    data.map { |action_data| action_data.last }.first.each do |action_data|
+    data.map(&:last).first.each do |action_data|
       html_code << "<tr>"
       html_code << "<th scope='row'>#{table_value(action_data[0])}</th>"
       html_code << "<td scope='row'>#{table_value(action_data[1])}</td>"
@@ -114,11 +115,10 @@ class HtmlWriter
   end
 
   def self.table_value(value)
-    value.length > 0 ? value : " ------- "
+    !value.empty? ? value : " ------- "
   end
 
   private_class_method :table_value
 end
 
-# rubocop:enable Metrics/AbcSize
 # rubocop:enable Metrics/MethodLength

@@ -7,7 +7,7 @@ end
 
 # Make sure the Ruby versions on your development and production servers are the same
 # The app will fail faster if the wrong version of Ruby is installed
-ruby "2.5.0"
+ruby "2.6.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "rails", "~> 5.1.4"
@@ -48,24 +48,36 @@ gem "rack-cors", require: "rack/cors"
 gem "dotenv"
 gem "dotenv-rails"
 
-group :development do
+group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
 
+  # https://github.com/rubocop-hq/rubocop
+  gem "rubocop", require: false
+  gem "rubocop-rspec"
+
+  # https://github.com/presidentbeef/brakeman
+  gem "brakeman"
+end
+
+group :development do
   # Spring speeds up development by keeping your application running in the background.
   # Read more: https://github.com/rails/spring
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
+
+  # https://github.com/voormedia/rails-erd
+  # http://graphviz.org
+  gem "rails-erd"
 end
 
 group :test do
   gem "codeclimate-test-reporter", require: false
   gem "database_cleaner"
   gem "factory_bot_rails"
+  gem "faker"
   gem "json_schema"
   gem "rack-test", require: "rack/test"
-  gem "rubocop", require: false
-  gem "rubocop-rspec"
   gem "simplecov"
   gem "vcr"
   gem "webmock"
@@ -73,3 +85,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+# https://github.com/rocketjob/rails_semantic_logger
+gem "rails_semantic_logger"

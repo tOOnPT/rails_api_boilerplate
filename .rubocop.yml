@@ -5,10 +5,6 @@ require: rubocop-rspec
 
 AllCops:
   DisplayCopNames: true
-  Include:
-    - Rakefile
-    - Gemfile
-    - config.ru
   Exclude:
     - db/**/*
     - bin/**/*
@@ -20,14 +16,6 @@ AllCops:
 
 Rails:
   Enabled: true
-Rails/Output:
-  Enabled: true
-  Exclude:
-    - lib/**/*
-Rails/Delegate:
-  Enabled: true
-  Exclude:
-    - lib/**/*
 
 Style/StringLiterals:
   Enabled: true
@@ -36,8 +24,6 @@ Style/BracesAroundHashParameters:
   Enabled: true
   EnforcedStyle: context_dependent
 Style/ClassAndModuleChildren:
-  Enabled: false
-Style/BracesAroundHashParameters:
   Enabled: false
 Style/NegatedIf:
   Enabled: false

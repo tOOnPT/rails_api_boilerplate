@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe ResponsesTimeAnalyzer do
   subject(:analyzer) { described_class.new(tests_log: true) }
+
   let(:test_endpoint) { "GET healthcheck#show.json" }
   let(:default_top) { 3 }
 
@@ -46,9 +47,13 @@ describe ResponsesTimeAnalyzer do
 
   private
 
+  # rubocop:disable RSpec/SubjectStub
+
   def log_file_path(filename)
     allow(subject)
       .to receive(:log_file)
       .and_return("./spec/fixtures/files/time_analyzer/#{filename}")
   end
+
+  # rubocop:enable RSpec/SubjectStub
 end

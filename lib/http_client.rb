@@ -41,8 +41,6 @@ module HttpClient
     http.request(request)
   end
 
-  private_class_method
-
   def default_content_header
     { "Content-Type": "application/json", **default_accept_header }
   end
@@ -50,4 +48,6 @@ module HttpClient
   def default_accept_header
     { "Accept": "application/json" }
   end
+
+  private_class_method :default_content_header, :default_accept_header
 end

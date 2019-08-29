@@ -25,8 +25,6 @@ class RequestsCannon
     "All #{rounds} fired."
   end
 
-  private_class_method
-
   def self.shoot(url, round, callback)
     callback.call(HttpClient.get(url), round)
   end
@@ -34,4 +32,6 @@ class RequestsCannon
   def self.fire_callback(response, _round)
     puts "{ status: #{response}, body: #{response.body} }"
   end
+
+  private_class_method :shoot, :fire_callback
 end

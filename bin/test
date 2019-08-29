@@ -7,6 +7,7 @@ module RootTesting
     with_coverage do
       RootTesting.run_rubocop
       RootTesting.run_rspec
+      RootTesting.run_brakeman
     end
 
     ResponsesTimeAnalyzer.new(tests_log: true).html_generation
@@ -32,6 +33,12 @@ module RootTesting
     RSpec::Core::Runner.invoke
   end
 
+  def run_brakeman
+    require "brakeman"
+    result = `brakeman -o coverage/brakeman/index.html`
+    exit result unless result.empty?
+  end
+
   def with_coverage(&block)
     require "simplecov"
     SimpleCov.start "rails" do
@@ -50,6 +57,8 @@ when "rubocop"
   RootTesting.run_rubocop
 when "rspec"
   RootTesting.run_rspec
+when "brakeman"
+  RootTesting.run_brakeman
 else
   RootTesting.run_all_with_coverage
 end
