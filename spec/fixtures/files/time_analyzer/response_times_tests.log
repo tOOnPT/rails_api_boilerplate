@@ -1,0 +1,4 @@
+# Logfile created on 2019-08-29 18:26:40 +0100 by logger.rb/66358
+GET healthcheck#show.json | 200 | 1058.492 | 0 | json: 0.589999370276928
+GET healthcheck#show.json | 200 | 979.222 | 0 | json: 0.6919996812939644
+GET healthcheck#show.json | 200 | 961.151 | 0 | json: 0.48399996012449265
