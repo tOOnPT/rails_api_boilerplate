@@ -121,7 +121,7 @@ GEM
       ast (~> 2.4.0)
     pg (0.21.0)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (3.12.6)
     rack (2.0.7)
     rack-attack (6.1.0)
       rack (>= 1.0, < 3)
@@ -262,7 +262,7 @@ DEPENDENCIES
   faker
   json_schema
   pg (~> 0.18)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-attack
   rack-cors
   rack-test
